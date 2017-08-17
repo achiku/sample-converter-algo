@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/big"
 	"strconv"
 )
 
@@ -15,4 +16,18 @@ func hexToInt(src string) (int64, error) {
 		return 0, err
 	}
 	return n, nil
+}
+
+func intToBase58(i int64) string {
+	var dst []byte
+	b := EncodeBig(dst, big.NewInt(i))
+	return string(b)
+}
+
+func base58ToInt(src string) (int64, error) {
+	i, err := DecodeToBig([]byte(src))
+	if err != nil {
+		return 0, err
+	}
+	return i.Int64(), nil
 }

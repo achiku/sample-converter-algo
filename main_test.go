@@ -33,3 +33,37 @@ func Test_hexToInt(t *testing.T) {
 		t.Logf("%s -> %d", c, i)
 	}
 }
+
+func Test_intToBase58(t *testing.T) {
+	cases := []int64{
+		1,
+		15,
+		16,
+		100,
+		10011,
+		12345678,
+		912345678,
+		938182374237,
+	}
+	for _, c := range cases {
+		t.Logf("%d -> %s", c, intToBase58(c))
+	}
+}
+
+func Test_base58ToInt(t *testing.T) {
+	cases := []string{
+		"2",
+		"g",
+		"h",
+		"26gWw",
+		"2oC1zU",
+		"qDnXU5v",
+	}
+	for _, c := range cases {
+		i, err := base58ToInt(c)
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Logf("%s -> %d", c, i)
+	}
+}

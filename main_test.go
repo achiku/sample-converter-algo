@@ -55,6 +55,8 @@ func Test_base58ToInt(t *testing.T) {
 		"2",
 		"g",
 		"h",
+		"2J",
+		"3YB",
 		"26gWw",
 		"2oC1zU",
 		"qDnXU5v",

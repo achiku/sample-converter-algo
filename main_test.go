@@ -69,3 +69,22 @@ func Test_base58ToInt(t *testing.T) {
 		t.Logf("%s -> %d", c, i)
 	}
 }
+
+func Test_xor(t *testing.T) {
+	cases := []int64{
+		1,
+		15,
+		16,
+		100,
+		10011,
+		12345678,
+		912345678,
+		938182374237,
+	}
+	for _, c := range cases {
+		a := xor(c)
+		t.Logf("%d -> %d", c, a)
+		b := xor(a)
+		t.Logf("%d -> %d", c, b)
+	}
+}

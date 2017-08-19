@@ -6,6 +6,10 @@ import (
 	"strconv"
 )
 
+const (
+	i64 int64 = 0x7fffffffffffffff
+)
+
 func intToHex(i int64) string {
 	return fmt.Sprintf("%x", i)
 }
@@ -30,4 +34,8 @@ func base58ToInt(src string) (int64, error) {
 		return 0, err
 	}
 	return i.Int64(), nil
+}
+
+func xor(i int64) int64 {
+	return i ^ i64
 }

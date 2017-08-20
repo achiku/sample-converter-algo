@@ -39,3 +39,8 @@ func base58ToInt(src string) (int64, error) {
 func xor(i int64) int64 {
 	return i ^ i64
 }
+
+func saltxor(i int64, key int64) int64 {
+	r := i + key
+	return r ^ i64
+}

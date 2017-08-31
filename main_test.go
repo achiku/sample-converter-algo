@@ -162,3 +162,36 @@ func Test_hashid(t *testing.T) {
 		t.Logf("%d -> %s -> %d", c, s, ss)
 	}
 }
+
+func testNewHash(t *testing.T) *HashID {
+	hdata := NewData()
+	hdata.MinLength = 8
+	hdata.Salt = "this is my sacred key"
+	encoder, err := NewWithData(hdata)
+	if err != nil {
+		t.Fatal(err)
+	}
+	return encoder
+}
+
+func TestError_Encode(t *testing.T) {
+	h := testNewHash(t)
+	s, err := h.EncodeInt64([]int64{1})
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Logf("%s", s)
+}
+
+func printUint64(t *testing.T, i uint64) {
+	t.Logf("printUint64 i=%d", i)
+}
+
+func TestIntConv(t *testing.T) {
+	i := int64(100)
+	t.Logf("i=%d", i)
+	u := uint64(i)
+	t.Logf("u=%d", u)
+
+	printUint64(t, u)
+}
